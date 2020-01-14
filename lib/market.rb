@@ -49,4 +49,11 @@ class Market
       total_inventory
     end
   end
+
+  def sell(item, quantity)
+    total_inventory.reduce(0) do |key, inventory|
+      return true if inventory.last >= quantity
+      end
+      false
+  end
 end
