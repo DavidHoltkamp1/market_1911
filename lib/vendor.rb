@@ -10,6 +10,10 @@ attr_reader :name, :inventory
     @inventory[item]
   end
 
+  def check_inventory
+    @inventory.keys 
+  end
+
   def stock(item, amount)
     @inventory[item] += amount
   end
