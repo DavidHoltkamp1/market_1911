@@ -35,6 +35,18 @@ class Market
     names = all_items.map do |item|
       item.name
     end
-    names.uniq.sort 
+    names.uniq.sort
+  end
+
+  def total_inventory
+    all_inventory = @vendors.map do |vendor|
+      vendor.inventory
+    end
+    all_inventory.reduce(Hash.new(0)) do |total_inventory, items|
+      items.each do |item, inventory|
+        total_inventory[item] += inventory
+      end
+      total_inventory
+    end
   end
 end
