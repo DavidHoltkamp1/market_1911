@@ -19,12 +19,22 @@ class Market
   def vendors_that_sell(item_name)
     vendors_that_sell = []
     @vendors.map do |vendor|
-      vendor.check_inventory.find_all do |item|
+      vendor.check_inventory.each do |item|
         if item.name == item_name
           vendors_that_sell << vendor
         end
       end
     end
     vendors_that_sell
+  end
+
+  def sorted_item_list
+    all_items = @vendors.flat_map do |vendor|
+      vendor.check_inventory
+    end
+    names = all_items.map do |item|
+      item.name
+    end
+    names.uniq.sort 
   end
 end
